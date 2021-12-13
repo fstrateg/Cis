@@ -3,3 +3,11 @@
 ################################################################################
 
 /.vs
+/VuejsCisApp/node_modules
+/VuejsCisApp/obj
+/VuejsCisApp/tmp
+/CisNet/bin/Debug/net5.0
+/CisNet/obj
+/VuejsCisApp/dist
+/VuejsCisApp/public/bootstrap
+/CisNet/wwwroot/lib

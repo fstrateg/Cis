@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_Login";
+    ViewData["Title"] = "Вход в систему";
+    var returnUrl = ViewData["returnUrl"] as string;
+    var error = TempData["error"] as string;
+}
+@if(!String.IsNullOrEmpty(error))
+{
+    <p class="alert-danger">@error</p>
+}
+<div class="login-container">
+    <div class="login-form mx-auto">
+        
+        <form action="\Login?ReturnUrl=@System.Net.WebUtility.UrlEncode(returnUrl)" method="post">
+            <h5 class="mb-4">Вход</h5>
+            <formset>
+                <div class="mb-4 px-5">
+            <input class="form-control" type="text" name="username" placeholder="Имя пользователя"/>
+            </div>
+            <div class="mb-4 px-5">
+            <input class="form-control" type="password" name="password" Placeholder="Пароль" />
+            </div>
+            <div class="mb-4 px-5">
+            <input class="btn px-4 btn-primary" type="submit" value="Вход"/>
+            </div>
+            </formset>
+        </form>
+    </div>
+</div>
+<style scoped>
+    .login-container{
+        padding-top: 120px;
+    }
+    .login-form{
+        border-radius: 0.25rem;
+        display:block;
+        width:300px;
+        height:240px;
+        border: 1px solid #ccc;
+        text-align:center;
+        background: url('/images/network.png') no-repeat right;
+    }
+</style>
