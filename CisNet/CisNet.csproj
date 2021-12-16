@@ -15,4 +15,11 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="CommonLib">
+      <HintPath>..\..\..\TFS2\_Release\Plugins\CommonLib.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
 </Project>

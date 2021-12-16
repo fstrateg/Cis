@@ -1,7 +1,6 @@
-﻿using System;
+﻿using CommonLib;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CisNet.Types;
 
 namespace CisNet.Models
 {
@@ -12,5 +11,12 @@ namespace CisNet.Models
             if (username == "Alex" && password == "123") return true;
             return false;
         }
+
+        public List<Bypass> GetBypassList()
+        {
+            return Bypass.getTestData();
+        }
     }
+
+
 }

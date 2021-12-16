@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace CisNet.Controllers
 {
-    
+
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/cis")]
     [ApiController]
@@ -38,10 +38,12 @@ namespace CisNet.Controllers
             return View();
         }
 
-        [Route("privacy")]
-        public IActionResult Privacy()
+        [Route("bypasslist")]
+        [HttpGet("bypasslist")]
+        public IActionResult Bypasslist()
         {
-            return View();
+            
+            return Ok(_model.GetBypassList());
         }
 
         [Route("archive")]
