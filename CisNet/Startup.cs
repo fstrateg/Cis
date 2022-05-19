@@ -30,6 +30,12 @@ namespace CisNet
         {
             services.Configure<Config>(Configuration.GetSection("JWTSecret"));
             services.AddControllersWithViews();
+            services.AddCors(o => {
+                o.AddPolicy("MyPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
 
             AddAuthentication(services);
         }
@@ -69,6 +75,7 @@ namespace CisNet
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseCors("MyPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

@@ -34,7 +34,7 @@ namespace CisNet.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok("Index");
+            return Ok("Index Test Ok");
         }
 
         [HttpPost("Loginnet")]
@@ -45,6 +45,7 @@ namespace CisNet.Controllers
                 return Ok(new RegistrtionResponce()
                 {
                     Success = true,
+                    Username = userInfo.Username,
                     Token = GenerateJwtToken(userInfo)
                 });
             }

@@ -1,11 +1,7 @@
 <template>
     <div id="app">
         <Nav />
-        <div class="auth-wrapper">
-            <div class="auth-inner">
-                <router-view />
-            </div>
-        </div>
+        <router-view />
     </div>
 </template>
 
@@ -38,15 +34,5 @@
             margin:0;
             line-height: 1;
             padding-bottom: 20px;
-        }
-        .auth-inner{
-            width: 450px;
-            margin: auto;
-            background: #f0f0f0;
-            box-shadow: 0px 14px 80px rgba(34,3,58,0.2);
-            padding: 40px 55px 45px 55px;
-            border-radius: 15px;
-            transition: all .3s;
-            border: solid 1px #c0c0ff
         }
 </style>
