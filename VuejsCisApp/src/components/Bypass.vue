@@ -1,5 +1,12 @@
 ﻿<template>
-    <p>Обходные новые и просроченные</p>
+    <div>
+        <p>Обходные новые и просроченные</p>
+        <ul id="v-for-object" class="demo">
+            <li v-for="value in Employes">
+                {{ value }}
+            </li>
+        </ul>
+    </div>
 </template>
 <script lang="ts">
 
@@ -15,23 +22,19 @@
     @Component
     export default class Bypass extends Vue {
 
-        private Employes: Emploee[]=[];
+        private Employes: Emploee[] = [];
 
         public async created() {
-            const resp = await backend.get('cis/bypasslist', {
-                headers: {
-                    Autorization: 'Bearer ' + sessionStorage.getItem('token')
-                }
-            });
-
-            let arr = resp.data;
-            console.log(resp.data);
+            console.log(sessionStorage.getItem('token'));
+            const resp = await backend.get('cis/bypasslist');
             
-            arr.forEach(function (item: any) {
-                let i = new Emploee();
-                this.Employes.push()
-                console.log(item);
-            });
+
+            let arr: Array<any> = resp.data;
+            
+
+            for (let i = 0; i < arr.length; i++)
+                this.Employes.push(arr[i].objCaption);
+            console.log(arr[0].objCaption);
         }
     }
 </script>

@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace CisNet.Controllers
 {
 
-   // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/cis")]
     [ApiController]
     public class CisController : Controller

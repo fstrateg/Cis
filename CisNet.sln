@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CisNet", "CisNet\CisNet.csp
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "VuejsCisApp", "VuejsCisApp\VuejsCisApp.njsproj", "{6C7FD6F7-DA22-452B-A964-C90BB8A80E0A}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "CisApp", "CisApp\CisApp.njsproj", "{811E203A-0F7F-44D1-A311-DA332E5F8F0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6C7FD6F7-DA22-452B-A964-C90BB8A80E0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C7FD6F7-DA22-452B-A964-C90BB8A80E0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C7FD6F7-DA22-452B-A964-C90BB8A80E0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{811E203A-0F7F-44D1-A311-DA332E5F8F0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{811E203A-0F7F-44D1-A311-DA332E5F8F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{811E203A-0F7F-44D1-A311-DA332E5F8F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{811E203A-0F7F-44D1-A311-DA332E5F8F0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

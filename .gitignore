@@ -12,3 +12,5 @@
 /VuejsCisApp/public/bootstrap
 /CisNet/wwwroot/lib
 /CisNet/.vs
+/CisApp/node_modules
+/CisApp/public/bootstrap
