@@ -1,18 +1,4 @@
 ﻿<template>
-    <!--form class="mx-auto login-form" @submit.prevent="handleSubmit">
-        <h3>Вход</h3>
-        <div class="mb-3 px-5">
-            <label>Пользователь</label>
-            <input type="text" class="form-control" v-model="login" placeholder="Пользователь" />
-        </div>
-        <div class="mb-4 px-5">
-            <label>Пароль</label>
-            <input type="password" class="form-control" v-model="password" placeholder="Пароль" />
-        </div>
-        <div class="mb-4 px-5 login-form-submit">
-            <button class="btn btn-primary btn-block">Вход</button>
-        </div>
-    </form-->
     <div class="auth-fon">
         <div class="auth-wrapper">
             <div class="auth-inner">
@@ -42,19 +28,28 @@
 </template>
 
 <script>
-
+    import backend from '../backend'
     export default
     {
-       name: 'Login',
-
-        //function handleSubmit() {
-        //    let obj = { Username: this.login, Password: this.password }
-        //    backend.post('loginnet', obj).then(function (resp) {
-        //        sessionStorage.setItem('token', resp.data.token);
-        //        console.log(resp.data);
-        //    });
-        //            console.log(obj)
-        //        }
+            name: 'Login',
+            data() {
+                return {
+                    login: '',
+                    password: ''
+                };
+            },
+            methods: {
+                handleSubmit() {
+                    let obj = { Username: this.login, Password: this.password }
+                    const route = this.$router;
+                    backend.post('loginnet', obj).then(function (resp) {
+                        localStorage.setItem('token', resp.data.token);
+                            route.push('/');
+                            console.log(resp.data);
+                    });
+                    console.log(obj)
+                }
+            }
     }
 </script>
 

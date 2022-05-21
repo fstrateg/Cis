@@ -8,9 +8,9 @@ namespace CisNet.Types
     public class Bypass
     {
         public decimal ID { get; set; }
-        public DateTime DocDate { get; set; }
+        public string DocDate { get; set; }
 
-        public DateTime EventDate { get; set; }
+        public string EventDate { get; set; }
         public string TypeName { get; set; }
         public string Staff { get; set; }
         public string Remark { get; set; }
@@ -35,8 +35,8 @@ namespace CisNet.Types
             Bypass p = new Bypass()
             {
                 ID = 10000000000001024633,
-                DocDate = new DateTime(2021, 12, 09, 09, 07, 39),
-                EventDate = new DateTime(2021, 12, 16),
+                DocDate = "09.12.2021 09:07:39",
+                EventDate = new DateTime(2021, 12, 16).ToShortDateString(),
                 TypeName = "увольнение",
                 Staff = "Москва | Региональное представительство | Маркетолог",
                 Remark = "Собственное желание",
@@ -69,8 +69,8 @@ namespace CisNet.Types
             p = new Bypass()
             {
                 ID = 10000000000001019682,
-                DocDate = new DateTime(2020, 12, 07, 17, 35, 01),
-                EventDate = new DateTime(2020, 12, 1),
+                DocDate = "07.12.2022 17:35:01",
+                EventDate = "01.12.2020",
                 TypeName = "увольнение",
                 Staff = "Москва | Региональное представительство | Менеджер по продажам",
                 Remark = "ПН -746 | Нарушение финансовой дисциплины",

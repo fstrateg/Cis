@@ -1,16 +1,114 @@
-<template>
+﻿<template>
     <div class="home">
-        <p>Welcome to your new single-page application, built with <a href="https://vuejs.org" target="_blank">Vue.js</a>.</p>
+        <h3 class="title">Обходные новые и просроченные</h3>
+            <div v-for="item in Employes" :key="item.id">
+                <BypassItem :item=item />
+            </div>
     </div>
 </template>
 
 <script>
+    import backend from '../backend'
+    import BypassItem from '../components/BypassItem'
+
     export default {
         name: 'Bypass',
+        components: {
+            BypassItem: BypassItem
+        },
+        data() {
+            return {
+                Employes: []
+            };
+        },
+        async mounted() {
+            let token = localStorage.getItem('token');
+            console.log(token);
+
+            const resp = await backend.get('cis/bypasslist', {
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": 'Bearer ' + token
+                }
+            });
+
+
+            let arr = resp.data;
+
+
+            for (let i = 0; i < arr.length; i++) {
+                let item = arr[i];
+                this.Employes.push({
+                    id: item.id,
+                    fio: item.objCaption,
+                    docDate: item.docDate,
+                    eventDate: item.eventDate,
+                    eventName: item.typeName,
+                    zverId: item.zverid,
+                    zverKon: item.zverContract,
+                    staff: item.staff,
+                    remark: item.remark
+                });
+            }
+            console.log(arr[0]);
+        }
     };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped type="text/css">
+    body {
+        font-size: 14px;
+    }
 
+    .list-tb {
+    }
+
+    .list-cn {
+        border: 1px solid #4857ff;
+        padding: 4px;
+        margin-top: 25px;
+        border-radius: 5px;
+        background: #fcfcff;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .list-cap {
+        text-align: center;
+    }
+
+    .list-det {
+        margin: 0px 20px;
+        padding: 15px 5px;
+        border-top: 1px solid #4857ff;
+        border-bottom: 1px solid #4857ff;
+    }
+
+    .list-grp .col {
+        display: inline-flex;
+        justify-content: center;
+    }
+
+    .grp {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #fff;
+        font-weight: bold;
+        height: 32px;
+        width: 32px;
+        margin: 10px 3px;
+        border-radius: 3px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .grp-green {
+        background: #38E538;
+        border: 1px solid #38D538;
+    }
+
+    .grp-red {
+        background: #FF3636;
+        border: 1px solid #D53636;
+    }
+</style>

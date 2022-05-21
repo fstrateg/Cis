@@ -6,14 +6,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav  ms-auto">
                     <li class="nav-item">
                         <router-link class="nav-link" to="/">Обходные</router-link>
                     </li>
-                    <!----li class="nav-item">
-                        <router-link class="nav-link" to="/archive">Архив</router-link>
-                    </li-->
                     <li class="nav-item">
+                        <router-link class="nav-link" to="/archive">Архив</router-link>
+                    </li>
+                    <li class="nav-item d-flex">
+                        <a href="javascript: void(0)" @click="handleClick" class="nav-link" to="/login">Выход</a>
+                    </li>
+                    <li class="nav-item d-flex">
                         <router-link class="nav-link" to="/login">Вход</router-link>
                     </li>
                 </ul>
@@ -23,6 +26,12 @@
 </template>
 <script>
     export default {
-        name: "Nav"
+        name: "Nav",
+        methods: {
+            handleClick() {
+                localStorage.removeItem('username');
+                localStorage.removeItem('token');
+            }
+        }
     }
 </script>

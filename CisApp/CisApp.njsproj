@@ -29,18 +29,24 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="public\common.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\favicon.ico" />
     <Content Include="public\Images\login.png" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
+    <Content Include="src\backend.js" />
     <Content Include="src\components\Archive.vue" />
     <Content Include="src\components\Bypass.vue" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\components\BypassItem.vue" />
     <Content Include="src\components\Login.vue" />
     <Content Include="src\router.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\temp.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />
