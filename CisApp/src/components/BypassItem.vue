@@ -1,7 +1,25 @@
 ﻿<script>
     export default {
         name: "BypassItem",
-        props: ['item']
+        props: ['item'],
+        methods: {
+            getClass(vl) {
+                let rez = ['grp'];
+                switch (vl) {
+                    case 1:
+                        rez.push('grp-red');
+                        break;
+                    case 0:
+                        rez.push('grp-green');
+                        break;
+                    case 2:
+                        rez.push('grp-gray');
+                        break;
+
+                }
+                return rez;
+            }
+        }
     }
 </script>
 
@@ -37,13 +55,16 @@
             </div>
             <div class="list-grp row">
                 <div class="col">
-                    <div class="grp grp-green">138</div>
-                    <div class="grp grp-green">2014</div>
-                    <div class="grp grp-green"></div>
-                    <div class="grp grp-red"></div>
-                    <div class="grp grp-red"></div>
-                    <div class="grp grp-red"></div>
-                    <div class="grp grp-red"></div>
+                    <div :class="getClass(item.p138)">138</div>
+                    <div :class="getClass(item.p183)">183</div>
+                    <div :class="getClass(item.p314)">314</div>
+                    <div :class="getClass(item.p405)">405</div>
+                    <div :class="getClass(item.p778)">778</div>
+                    <div :class="getClass(item.p363)">363</div>
+                    <div :class="getClass(item.p124)">124</div>
+                    <div :class="getClass(item.p108)">108</div>
+                    <div :class="getClass(item.p758)">758</div>
+                    <img class="grp-img" src="Images/loop.png" :title="item.info"/>
                 </div>
             </div>
         </div>
@@ -107,5 +128,16 @@
     .grp-red {
         background: #FF3636;
         border: 1px solid #D53636;
+    }
+
+    .grp-gray {
+        background: #a0a0a0;
+        border: 1px solid #909090;
+    }
+
+    .grp-img {
+        width: 32px;
+        height: 32px;
+        margin: 10px 3px;
     }
 </style>

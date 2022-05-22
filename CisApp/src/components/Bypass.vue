@@ -41,7 +41,17 @@
                     zverId: item.zverid,
                     zverKon: item.zverContract,
                     staff: item.staff,
-                    remark: item.remark
+                    remark: item.remark,
+                    p108: item.p108,
+                    p124: item.p124,
+                    p138: item.p138,
+                    p183: item.p183,
+                    p314: item.p314,
+                    p363: item.p363,
+                    p405: item.p405,
+                    p758: item.p758,
+                    p778: item.p778,
+                    info: item.info
                 });
             }
             console.log(arr[0]);
