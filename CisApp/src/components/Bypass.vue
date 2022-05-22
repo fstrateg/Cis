@@ -8,7 +8,7 @@
 </template>
 
 <script>
-    import backend from '../backend'
+    import { getBackend } from '../backend'
     import BypassItem from '../components/BypassItem'
 
     export default {
@@ -22,15 +22,9 @@
             };
         },
         async mounted() {
-            let token = localStorage.getItem('token');
-            console.log(token);
 
-            const resp = await backend.get('cis/bypasslist', {
-                headers: {
-                    "Content-type": "application/json",
-                    "Authorization": 'Bearer ' + token
-                }
-            });
+            const backend = getBackend();
+            const resp = await backend.get('cis/bypasslist');
 
 
             let arr = resp.data;

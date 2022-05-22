@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Nav />
+        <Nav :key="$route.fullPath"/>
         <router-view />
     </div>
 </template>
@@ -11,9 +11,14 @@
 
     export default {
         name: 'app',
+        data() {
+            return{
+                isLogining: false
+            }
+        },
         components: {
             Nav
-        }
+        },
     };
 </script>
 

@@ -6,7 +6,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav  ms-auto">
+                <ul v-if="isLogining" class="navbar-nav  ms-auto">
                     <li class="nav-item">
                         <router-link class="nav-link" to="/">Обходные</router-link>
                     </li>
@@ -16,6 +16,8 @@
                     <li class="nav-item d-flex">
                         <a href="javascript: void(0)" @click="handleClick" class="nav-link" to="/login">Выход</a>
                     </li>
+                </ul>
+                <ul v-else class="navbar-nav  ms-auto">
                     <li class="nav-item d-flex">
                         <router-link class="nav-link" to="/login">Вход</router-link>
                     </li>
@@ -25,13 +27,26 @@
     </nav>
 </template>
 <script>
+    import { logoutUser, isLoggedIn } from '../libs/auth'
     export default {
         name: "Nav",
+        data() {
+            return {
+                isLogining: false
+            }
+        },
         methods: {
             handleClick() {
-                localStorage.removeItem('username');
-                localStorage.removeItem('token');
+                logoutUser();
+                this.$forceUpdate();
+                this.$router.push('/login');
             }
+        },
+        mounted: function () {
+            this.isLogining=isLoggedIn();
+        },
+        updated: function () {
+            this.isLogining = isLoggedIn();
         }
     }
 </script>

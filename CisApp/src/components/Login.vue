@@ -28,7 +28,9 @@
 </template>
 
 <script>
-    import backend from '../backend'
+    //import backend from '../backend'
+    import { loginUser } from '../libs/auth'
+    
     export default
     {
             name: 'Login',
@@ -39,15 +41,10 @@
                 };
             },
             methods: {
-                handleSubmit() {
-                    let obj = { Username: this.login, Password: this.password }
-                    const route = this.$router;
-                    backend.post('loginnet', obj).then(function (resp) {
-                        localStorage.setItem('token', resp.data.token);
-                            route.push('/');
-                            console.log(resp.data);
-                    });
-                    console.log(obj)
+                async handleSubmit() {
+                    await loginUser(this.login, this.password);
+                    this.$forceUpdate();
+                    this.$router.push('/');
                 }
             }
     }

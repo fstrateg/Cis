@@ -43,6 +43,7 @@
     <Content Include="README.md" />
     <Content Include="src\components\BypassItem.vue" />
     <Content Include="src\components\Login.vue" />
+    <Content Include="src\libs\auth.js" />
     <Content Include="src\router.js">
       <SubType>Code</SubType>
     </Content>
@@ -62,6 +63,7 @@
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\libs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="babel.config.js" />
