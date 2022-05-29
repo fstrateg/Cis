@@ -60,9 +60,7 @@
 </script>
 
 <style scoped type="text/css">
-    body {
-        font-size: 14px;
-    }
+    
 
     .list-tb {
     }

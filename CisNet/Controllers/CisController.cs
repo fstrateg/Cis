@@ -38,18 +38,20 @@ namespace CisNet.Controllers
             return View();
         }
 
+        [Route("archive")]
+        [HttpPost("archive")]
+        public IActionResult Archive([FromBody] ArchiveRequest request )
+        {
+
+            return Ok(_model.GetArchive(request));
+        }
+
         [Route("bypasslist")]
         [HttpGet("bypasslist")]
         public IActionResult Bypasslist()
         {
             
             return Ok(_model.GetBypassList());
-        }
-
-        [Route("archive")]
-        public IActionResult Archive()
-        {
-            return View();
         }
 
         [Route("login")]
