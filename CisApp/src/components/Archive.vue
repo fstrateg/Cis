@@ -87,7 +87,6 @@ import { getBackend } from '../backend'
                         fio: this.fio
                     });
                 this.table = resp.data;
-                console.log(resp)
             },
             
         }

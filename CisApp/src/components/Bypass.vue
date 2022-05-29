@@ -54,7 +54,6 @@
                     info: item.info
                 });
             }
-            console.log(arr[0]);
         }
     };
 </script>
