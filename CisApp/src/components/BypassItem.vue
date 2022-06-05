@@ -12,8 +12,11 @@
                     case 0:
                         rez.push('grp-green');
                         break;
-                    case 2:
+                    case -1:
                         rez.push('grp-gray');
+                        break;
+                    case 2:
+                        rez.push('grp-yellow');
                         break;
 
                 }
@@ -133,6 +136,11 @@
     .grp-gray {
         background: #a0a0a0;
         border: 1px solid #909090;
+    }
+
+    .grp-yellow {
+        background: #f7da2a;
+        border: 1px solid #ccaf00;
     }
 
     .grp-img {

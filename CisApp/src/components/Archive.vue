@@ -25,6 +25,9 @@
                              label="Дата"
                              sortable
                              width="100">
+                <template slot-scope="scope">
+                    <span class="cellwrap">{{ convertdate(scope.row.docDate) }}</span>
+                </template>
             </el-table-column>
             <el-table-column prop="event"
                              label="Событие"
@@ -88,6 +91,9 @@ import { getBackend } from '../backend'
                     });
                 this.table = resp.data;
             },
+            convertdate(dt) {
+                return moment(dt, 'YYYY-MM-DD').format('DD.MM.YYYY');
+            }
             
         }
     };
