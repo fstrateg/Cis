@@ -8,5 +8,6 @@ namespace CisNet.Types
     public class Config
     {
         public string Secret { get; set; }
+        
     }
 }

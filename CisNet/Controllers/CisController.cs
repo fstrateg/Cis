@@ -1,10 +1,12 @@
 ﻿using CisNet.Models;
+using CisNet.Types;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -22,13 +24,18 @@ namespace CisNet.Controllers
     [ApiController]
     public class CisController : Controller
     {
-        private readonly ILogger<CisController> _logger;
+        //private readonly ILogger<CisController> _logger;
         private ModelDb _model;
 
-        public CisController(ILogger<CisController> logger)
+        public CisController(IConfiguration config)
         {
-            _logger = logger;
-            _model = new ModelDb();
+            Connect con = new Connect()
+            {
+                UserName = config.GetConnectionString("UserName"),
+                Password = config.GetConnectionString("Password"),
+                DataSource = config.GetConnectionString("DataSource")
+            };
+            _model = new ModelDb(con);
         }
 
         [Route("index")]

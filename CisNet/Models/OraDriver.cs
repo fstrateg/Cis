@@ -4,27 +4,30 @@ using System.Linq;
 using Oracle.ManagedDataAccess.Client;
 using System.Text;
 using System.Data;
+using CisNet.Types;
 
 namespace CisNet.Models
 {
     public class OraDriver
     {
+        const int _fetchRowsAmount = 2048;
+
         OracleConnection _con = new OracleConnection();
         StringBuilder _sql=new StringBuilder();
-        public OraDriver Dbo { get { return _con==null?OraDriver.GetDbo():this; } }
+        public OraDriver Dbo { get { return this; } }
 
-        public static OraDriver GetDbo()
+        public OraDriver(Connect con)
         {
-            return new OraDriver();
+            OracleConnectionStringBuilder cb = new OracleConnectionStringBuilder();
+            cb.UserID = con.UserName;
+            cb.Password = con.Password;
+            cb.DataSource = con.DataSource;
+            _con.ConnectionString = cb.ToString();
         }
 
         public OraDriver Connect()
         {
-            OracleConnectionStringBuilder cb = new OracleConnectionStringBuilder();
-            cb.UserID = "TRANSIT";
-            cb.Password = "Sdff44jBNE&dk$#569";
-            cb.DataSource = "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.73.15)(PORT=1521)))(CONNECT_DATA=(SID=MURZV)(SERVER=DEDICATED)))";
-            _con.ConnectionString = cb.ToString();
+            
             _con.Open();
             return this;
         }
@@ -48,6 +51,45 @@ namespace CisNet.Models
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             da.Fill(dt);
             return dt;
+        }
+
+        public DataTable GetTable(string StoredProc, string Param)
+        {
+            OracleDataReader rd = getDataReaderFromStoredProcedure(StoredProc, Param);
+            if (rd != null)
+            {
+                DataTable table = new DataTable("rez");
+                table.Load(rd);
+                return table;
+            }
+            else return null;
+        }
+
+        public OracleDataReader getDataReaderFromStoredProcedure(string StoredProc, string Params)
+        {
+            _sql.Clear();
+            this.SetQuery(StoredProc);
+            string query = _sql.ToString();
+            if (string.IsNullOrEmpty(query))
+                throw new Exception("Запрос не задан!");
+            //DataTable table = new DataTable(TableName);
+            OracleCommand cmd = _con.CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = query;
+            var param = new OracleParameter();
+            param.OracleDbType = OracleDbType.RefCursor;
+            param.Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(param);
+            param = new OracleParameter();
+            param.OracleDbType = OracleDbType.Clob;
+            param.Direction = ParameterDirection.Input;
+            param.Value = Params;
+            cmd.Parameters.Add(param);
+
+            OracleDataReader rdr = cmd.ExecuteReader();
+            if (rdr.RowSize > 0) rdr.FetchSize = rdr.RowSize * _fetchRowsAmount;
+            return rdr;
+            
         }
 
 
