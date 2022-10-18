@@ -4,6 +4,7 @@ import { isLoggedIn } from './libs/auth';
 import BypassVue from './components/Bypass.vue';
 import Login from './components/Login.vue';
 import Archive from './components/Archive.vue';
+import BypassEdit from './views/BypassEdit.vue';
 
 Vue.use(VueRouter);
 
@@ -28,9 +29,17 @@ const routes = [
         path: '/archive',
         name: 'Archive',
         meta: {
-            allowGuest: true
+            allowGuest: false
         },
         component: Archive
+    },
+    {
+        path: '/bypassedit',
+        name: 'BypassEdit',
+        meta: {
+            allowGuest: false
+        },
+        component: BypassEdit
     },
 
 ];

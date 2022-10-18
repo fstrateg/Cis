@@ -15,6 +15,7 @@ using CisNet.Types;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 
 namespace CisNet.Controllers
 {
@@ -23,12 +24,18 @@ namespace CisNet.Controllers
     public class ApiController : Controller
     {
         private readonly ModelDb _model;
-        private IOptions<Config> _config;
+        private Config _config;
 
-        public ApiController(IOptions<Config> options)
+        public ApiController(IConfiguration config)
         {
-            _model = new ModelDb();
-            _config = options;
+            Connect con = new Connect()
+            {
+                UserName = config.GetConnectionString("UserName"),
+                Password = config.GetConnectionString("Password"),
+                DataSource = config.GetConnectionString("DataSource")
+            };
+            _model = new ModelDb(con);
+            _config = new Config() { Secret = config.GetValue<string>("JWTSecret:Secret") };
         }
 
         [HttpGet]
@@ -55,7 +62,7 @@ namespace CisNet.Controllers
         private string GenerateJwtToken(UserInfo userInfo)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(_config.Value.Secret);
+            var key = Encoding.UTF8.GetBytes(_config.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { 

@@ -21,6 +21,10 @@
 
                 }
                 return rez;
+            },
+            edit(event) {
+                console.log(event.target.getAttribute('data-id'));
+                this.$router.push('bypassedit?id=-1');
             }
         }
     }
@@ -67,7 +71,10 @@
                     <div :class="getClass(item.p124)">124</div>
                     <div :class="getClass(item.p108)">108</div>
                     <div :class="getClass(item.p758)">758</div>
-                    <img class="grp-img" src="Images/loop.png" :title="item.info"/>
+                    <img class="grp-img" src="Images/loop.png" :title="item.info" />
+                    <a href="javascript:(0)" @click="edit">
+                        <img class="grp-img" src="Images/edit.png" title="Редактировние" :data-id="item.id"/>
+                    </a>
                 </div>
             </div>
         </div>

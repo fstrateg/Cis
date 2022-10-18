@@ -7,7 +7,7 @@ namespace CisNet.Types
 {
     public class Bypass
     {
-        public decimal ID { get; set; }
+        public string ID { get; set; }
         public string DocDate { get; set; }
 
         public string EventDate { get; set; }
@@ -27,14 +27,14 @@ namespace CisNet.Types
         public string Info { get; set; }
         public string Zverid { get; set; }
         public string ZverContract { get; set; }
-        public decimal Object_id { get; set; }
+        public string Object_id { get; set; }
 
         public static List<Bypass> getTestData()
         {
             List<Bypass> rez = new List<Bypass>();
             Bypass p = new Bypass()
             {
-                ID = 10000000000001024633,
+                ID = "10000000000001024633",
                 DocDate = "09.12.2021 09:07:39",
                 EventDate = new DateTime(2021, 12, 16).ToShortDateString(),
                 TypeName = "увольнение",
@@ -51,7 +51,7 @@ namespace CisNet.Types
                 P758 = 2,
                 P778 = 0,
                 Info = "",
-                Object_id = 1000002353777773,
+                Object_id = "1000002353777773",
                 ZverContract = "АДМЗР",
                 Zverid = "ГАЕВАЯ ВА"
 
@@ -68,7 +68,7 @@ namespace CisNet.Types
             rez.Add(p);
             p = new Bypass()
             {
-                ID = 10000000000001019682,
+                ID = "10000000000001019682",
                 DocDate = "07.12.2022 17:35:01",
                 EventDate = "01.12.2020",
                 TypeName = "увольнение",
@@ -85,7 +85,7 @@ namespace CisNet.Types
                 P758 = 0,
                 P778 = 0,
                 Info = "",
-                Object_id = 1000002330045370,
+                Object_id = "1000002330045370",
                 ZverContract = "АДМЗР",
                 Zverid = "ПОТРЯСИЛО ПВ"
 
