@@ -1,0 +1,12 @@
+﻿@model CisClient.Src.Models.LoginModel
+
+@{
+}
+<p>
+    This is login form
+</p>
+<form method="post" asp-controller="User" asp-action="Authorize">
+    <input Name="User" placeholder="Пользователь" type="text" />
+    <input Name="Password" placeholder="Пароль" type="password" />
+    <input class="btn px-4 btn-primary" type="submit" value="Вход"/>
+</form>

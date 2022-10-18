@@ -17,6 +17,10 @@ namespace CisClient
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddAuthentication("MyAuthCookie").AddCookie("MyAuthCookie", options => {
+                options.Cookie.Name = "MyAuthCookie";
+                options.LoginPath = "/user/login"; 
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,6 +28,9 @@ namespace CisClient
         {
             app.UseDeveloperExceptionPage();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
