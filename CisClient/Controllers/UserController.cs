@@ -18,8 +18,13 @@ namespace CisClient.Controllers
 
         [HttpPost]
         [Route("login")]
-        public IActionResult Authorize([FromForm] LoginModel model)
+        public IActionResult Login([FromForm] LoginModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorMessage = "Валидация не прошла";
+                return View(model);
+            }
             var Claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name, "Alex")

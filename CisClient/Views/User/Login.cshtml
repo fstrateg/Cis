@@ -1,12 +1,34 @@
 ﻿@model CisClient.Src.Models.LoginModel
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
+    Layout = "_LoginLayout";
 }
-<p>
-    This is login form
-</p>
-<form method="post" asp-controller="User" asp-action="Authorize">
-    <input Name="User" placeholder="Пользователь" type="text" />
-    <input Name="Password" placeholder="Пароль" type="password" />
-    <input class="btn px-4 btn-primary" type="submit" value="Вход"/>
-</form>
+<div class="auth-fon">
+        <div class="auth-wrapper">
+            <div class="auth-inner">
+                <div class="row">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6">
+                        <form class="loging-form" method="post">
+                            <h3>Вход в систему</h3>
+                            <p class="comment">Обходные листы</p>
+                            <div class="text-danger">@ViewBag.ErrorMessage</div>
+                            
+                            <div class="form-group pb-3">
+                                <label>Пользователь</label>
+                                <input type="text" class="form-control" asp-for="User" name="User" placeholder="Пользователь" />
+                                <span asp-validation-for="User" class="text-danger"></span>  
+                            </div>
+                            <div class="form-group pb-3">
+                                <label>Пароль</label>
+                                <input type="password" class="form-control" name="Password" placeholder="Пароль" />
+                                <span asp-validation-for="Password" class="text-danger"></span> 
+                            </div>
+                            <button class="btn btn-primary btn-enter" type="submit">Вход</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
